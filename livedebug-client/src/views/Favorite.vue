@@ -2,6 +2,7 @@
   <div class="container mx-auto pt-5">
     <h3 class="text-dark text-xl mb-4">My Favorite Project</h3>
     <div class="flex flex-wrap justify-between item-center content-center">
+      <h1>HEEELOOO</h1>
       <gallery
         v-for="(favorite, index) in favorites"
         :key="index"

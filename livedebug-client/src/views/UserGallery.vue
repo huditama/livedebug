@@ -3,7 +3,7 @@
     <loading v-if="isLoading"/>
     <h3 class="text-dark text-xl mb-4" v-if="!isLoading">{{ user.display_name}} Project</h3>
     <div class="flex flex-wrap justify-between item-center content-center" v-if="!isLoading">
-      <gallery
+      <Gallery
         v-for="(project, index) in projects"
         :key="index"
         :name="project.name"
@@ -22,7 +22,7 @@
             v-else
           >Added to My Favorite</div>
         </div>
-      </gallery>
+      </Gallery>
     </div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
   data () {
     return {
       addedIndex: [],
-      isLoading: true
+      isLoading: false
     }
   },
 
@@ -57,9 +57,8 @@ export default {
 
   computed: {
     user () {
-      return this.store.state.projects.user
+      return this.$store.state.projects.user
     },
-
     projects () {
       return this.$store.state.projects.projects
     }

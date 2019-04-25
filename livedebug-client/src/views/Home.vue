@@ -1,11 +1,11 @@
 <template>
   <div class="container mx-auto pt-5">
-    <div class="flex flex-col justify-center" v-if="!isLoading">
+    <div class="flex flex-col justify-center" v-if="isLoading">
       <img class="w-full h-64 self-center text-center mb-4" src="../assets/loading.svg">
 
       <span class="text-center text-grey-dark font-normal text-xl">Waiting data to be loaded</span>
     </div>
-    <div v-else>
+    <div v-else-if="!isLoading">
       <h3 class="text-dark text-xl mb-4">People To Follow</h3>
       <div class="flex justify-between flex-wrap">
         <user
@@ -21,21 +21,21 @@
       </div>
     </div>
 
-    <routing-view @myFavorite="myFavorite"/>
+    <router-view />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import User from '@/components/User.vue'
+import User from "@/components/User.vue";
 
 export default {
-  name: 'home',
+  name: "home",
 
-  data () {
+  data() {
     return {
       isLoading: true
-    }
+    };
   },
 
   components: {
@@ -43,29 +43,28 @@ export default {
   },
 
   methods: {
-    fetchUser () {
-      this.$store.dispatch('fetchUsers')
+    fetchUser() {
+      this.$store.dispatch("fetchUsers");
     },
 
-    seeProject (id) {
-      this.$router.push(`/${id}`)
+    seeProject(id) {
+      this.$router.push(`/${id}`);
     },
 
-    myFavorite (data) {
-      this.$emit('myFavorite', data)
+    myFavorite(data) {
+      this.$emit("myFavorite", data);
     }
   },
 
   computed: {
-    users () {
-      return this.$store.state.users
+    users() {
+      return this.$store.state.users;
     }
   },
 
-  mounted () {
-    this.fetchUser().then(data => {
-      this.isLoading = false
-    })
+  created() {
+    this.isLoading = false;
+    this.fetchUser();
   }
-}
+};
 </script>

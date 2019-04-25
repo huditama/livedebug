@@ -71,14 +71,14 @@
 </template>
 
 <script>
-import Gallery from '@/components/Gallery.vue'
+import Gallery from "@/components/Gallery.vue";
 
 export default {
-  data () {
-    const returnData = {
-      search: '',
+  data() {
+    return {
+      search: "",
       loading: false
-    }
+    };
   },
 
   components: {
@@ -86,24 +86,24 @@ export default {
   },
 
   computed: {
-    collections () {
-      return this.$store.state.collections
+    collections() {
+      return this.$store.state.collections;
     }
   },
 
-  beforeDestroy () {
-    this.$store.dispatch('cleanCollection')
+  beforeDestroy() {
+    this.$store.dispatch("cleanCollection");
   },
 
   methods: {
-    findCollections () {
-      this.loading = true
+    findCollections() {
+      this.loading = true;
       this.$store
-        .dispatch('findCollections', this.search)
-        .then(() => (this.loading = false))
+        .dispatch("findCollections", this.search)
+        .then(() => (this.loading = false));
     }
   }
-}
+};
 </script>
 
 <style>

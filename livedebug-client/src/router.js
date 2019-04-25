@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import UserGallery from './views/UserGallery'
+import Favorite from './views/Favorite.vue'
 
 Vue.use(Router)
 
@@ -28,7 +29,7 @@ export default new Router({
     {
       path: '/favorite',
       name: 'favorite',
-      component: () => import('./views/Favorite.vue')
+      component: Favorite
     }
   ]
 })
